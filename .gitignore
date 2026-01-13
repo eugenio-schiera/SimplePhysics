@@ -1,0 +1,17 @@
+# Compilati C++
+*.exe
+*.out
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+
+# Cartelle di Build
+build/
+bin/
+debug/
+release/
+
+# VS Code (Opzionale: rimuovi il # se vuoi ignorare le config dell'editor)
+.vscode/
