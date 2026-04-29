@@ -16,7 +16,7 @@ message(STATUS "Sto preparando il download di SFML... attendere...")
 FetchContent_Declare(
   sfml
   GIT_REPOSITORY https://github.com/SFML/SFML.git
-  GIT_TAG        2.6.1  # Usiamo questa versione specifica stabile
+  GIT_TAG        2.6.1  # Uso questa versione specifica stabile
 )
 
 # Questo scarica i sorgenti di SFML e li prepara per essere compilati insieme al tuo codice
@@ -24,7 +24,7 @@ FetchContent_MakeAvailable(sfml)
 # --- FINE INTEGRAZIONE LIBRERIA ---
 
 # Creiamo il nostro eseguibile prendendo il file main.cpp
-add_executable(physics_engine src/main.cpp)
+add_executable(physics_engine src/main.cpp src/Particle.cpp)
 
 # LINKING: Questa è la parte cruciale.
 # Diciamo al compilatore: "Quando crei physics_engine, attaccaci dentro i pezzi di SFML"
