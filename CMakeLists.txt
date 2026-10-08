@@ -42,3 +42,20 @@ add_custom_command(TARGET physics_engine POST_BUILD
     $<TARGET_FILE:sfml-system>
     $<TARGET_FILE_DIR:physics_engine>
 )
+
+# Test framework setup
+include(CTest)
+if(BUILD_TESTING)
+    FetchContent_Declare(
+      googletest
+      GIT_REPOSITORY https://github.com/google/googletest.git
+      GIT_TAG        v1.14.0
+    )
+    FetchContent_MakeAvailable(googletest)
+
+    add_executable(physics_tests tests/test_math.cpp)
+    target_link_libraries(physics_tests PRIVATE GTest::gtest_main sfml-system)
+
+    include(GoogleTest)
+    gtest_discover_tests(physics_tests)
+endif()
