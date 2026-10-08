@@ -10,11 +10,7 @@
 #include <vector>
 #include <cmath>
 #include "Particle.hpp"
-
-/// \brief Computes the dot product of two vectors.
-float dotProduct(const sf::Vector2f& firstVector, const sf::Vector2f& secondVector) {
-    return firstVector.x * secondVector.x + firstVector.y * secondVector.y;
-}
+#include "MathUtils.hpp"
 
 void solveCollisions(std::vector<Particle>& particles) {
     for (size_t i = 0; i < particles.size(); ++i) {
