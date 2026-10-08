@@ -42,3 +42,29 @@ add_custom_command(TARGET physics_engine POST_BUILD
     $<TARGET_FILE:sfml-system>
     $<TARGET_FILE_DIR:physics_engine>
 )
+# --- INIZIO INTEGRAZIONE GTEST ---
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/03597a01ee50ed33e9dfd640b249b4be3799d395.zip
+)
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+
+add_executable(
+  particle_test
+  tests/ParticleTest.cpp
+  src/Particle.cpp
+)
+target_link_libraries(
+  particle_test
+  GTest::gtest_main
+  sfml-graphics sfml-window sfml-system
+)
+
+include(GoogleTest)
+gtest_discover_tests(particle_test)
+# --- FINE INTEGRAZIONE GTEST ---
