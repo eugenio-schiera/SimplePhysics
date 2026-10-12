@@ -1,21 +1,33 @@
-/// \file main.cpp
-/// \brief Entry point per la simulazione del motore fisico 2D.
-/// \author Eugenio Schiera
-/// \date Latest modified 19\01\2026
-///
-/// This file contains the main simulation loop, particle definitions,
-/// and collision resolution logic.
+/**
+ * @file main.cpp
+ * @brief Entry point for the 2D simulation of the engine.
+ * @author Eugenio Schiera
+ * @date Latest modified 19\01\2026
+ * 
+ * This file contains the main simulation loop, particle definitions,
+ * and collision resolution logic.
+ */
 
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <cmath>
 #include "Particle.hpp"
 
-/// \brief Computes the dot product of two vectors.
+/**
+ * @brief Computes the dot product of two vectors.
+ * @param firstVector   First particle current position
+ * @param secondVector  Second particle current position
+ * 
+ * @return the dot product between the two vectors
+ */ 
 float dotProduct(const sf::Vector2f& firstVector, const sf::Vector2f& secondVector) {
     return firstVector.x * secondVector.x + firstVector.y * secondVector.y;
 }
 
+/**
+ * @brief Resolves collisions between each particle in the current space
+ * @param particles The vector of each particle actually existing in the enviroment
+ */
 void solveCollisions(std::vector<Particle>& particles) {
     for (size_t i = 0; i < particles.size(); ++i) {
         for (size_t j = i + 1; j < particles.size(); ++j) {
@@ -34,6 +46,7 @@ void solveCollisions(std::vector<Particle>& particles) {
 
                 // --- 1. STATIC RESOLUTION (Separation) ---
                 float penetrationDepth = minimumDistanceForCollision - actualDistance;
+                // Normalizing distance vector from first particle
                 sf::Vector2f collisionNormal = vectorBetweenCenters / actualDistance; 
                 
                 // Move particles apart
