@@ -1,8 +1,4 @@
-/**
- * @file
- * @brief Interface for particle structure and functions
- * 
-*/
+// This interface file simply specifies the class’s functions and structure (the ‘what’)
 
 // Tells the compiler to read the file once and compile it, ignoring subsequent reads
 #pragma once
